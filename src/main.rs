@@ -18,4 +18,7 @@ fn main() {
     println!("-----------------");
 
     utils::slices::run();
+    println!("-----------------");
+
+    utils::vectors::run();
 }
