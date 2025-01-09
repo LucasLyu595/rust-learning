@@ -24,4 +24,7 @@ fn main() {
     println!("-----------------");
 
     utils::iter::run();
+    println!("-----------------");
+
+    utils::strings::run();
 }
