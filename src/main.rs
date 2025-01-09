@@ -21,4 +21,7 @@ fn main() {
     println!("-----------------");
 
     utils::vectors::run();
+    println!("-----------------");
+
+    utils::iter::run();
 }
