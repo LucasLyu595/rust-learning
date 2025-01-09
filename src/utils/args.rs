@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 pub fn run() {
     // `std::env::args` returns an iterator of the command line arguments as strings
     // including the program name

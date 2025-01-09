@@ -1,6 +1,7 @@
 pub mod args;
 pub mod arrays;
 pub mod iter;
+pub mod matching;
 pub mod math;
 pub mod reference;
 pub mod slices;

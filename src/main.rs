@@ -29,5 +29,8 @@ fn main() {
     utils::strings::run();
     println!("-----------------");
 
-    utils::args::run();
+    // utils::args::run();
+    // println!("-----------------");
+
+    utils::matching::run();
 }
