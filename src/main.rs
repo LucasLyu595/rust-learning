@@ -53,6 +53,9 @@ fn struct_run() {
     println!("-----------------");
 
     structs::traits::run();
+    println!("-----------------");
+
+    structs::genfn::run();
 }
 
 fn main() {
