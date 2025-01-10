@@ -42,6 +42,8 @@ fn basic_run() {
 fn struct_run() {
     // structs::moves::run();
     // println!("-----------------");
+
+    structs::tuples::run();
 }
 
 fn main() {
