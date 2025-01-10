@@ -47,6 +47,9 @@ fn struct_run() {
     println!("-----------------");
 
     structs::stru::run();
+    println!("-----------------");
+
+    structs::life::run();
 }
 
 fn main() {
