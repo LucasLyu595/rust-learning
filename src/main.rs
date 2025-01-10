@@ -1,8 +1,9 @@
 mod basics;
+mod structs;
 
 use std::f64::consts;
 
-fn main() {
+fn basic_run() {
     basics::math::run();
     println!("-----------------");
 
@@ -36,4 +37,15 @@ fn main() {
     println!("-----------------");
 
     basics::files::run();
+}
+
+fn struct_run() {
+    // structs::moves::run();
+    // println!("-----------------");
+}
+
+fn main() {
+    basic_run();
+    println!("-----------------");
+    struct_run();
 }
