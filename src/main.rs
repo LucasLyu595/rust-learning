@@ -1,12 +1,12 @@
-mod utils;
+mod basics;
 
 use std::f64::consts;
 
 fn main() {
-    utils::math::run();
+    basics::math::run();
     println!("-----------------");
 
-    utils::reference::run();
+    basics::reference::run();
     println!("-----------------");
 
     // use a constant from the standard library
@@ -14,26 +14,26 @@ fn main() {
     let abs_diff = (x.cos() - 1.0).abs();
     assert!(abs_diff < 1e-10);
 
-    utils::arrays::run();
+    basics::arrays::run();
     println!("-----------------");
 
-    utils::slices::run();
+    basics::slices::run();
     println!("-----------------");
 
-    utils::vectors::run();
+    basics::vectors::run();
     println!("-----------------");
 
-    utils::iter::run();
+    basics::iter::run();
     println!("-----------------");
 
-    utils::strings::run();
+    basics::strings::run();
     println!("-----------------");
 
-    // utils::args::run();
+    // basics::args::run();
     // println!("-----------------");
 
-    utils::matching::run();
+    basics::matching::run();
     println!("-----------------");
 
-    utils::files::run();
+    basics::files::run();
 }
