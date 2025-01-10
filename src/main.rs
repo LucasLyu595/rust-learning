@@ -44,6 +44,9 @@ fn struct_run() {
     // println!("-----------------");
 
     structs::tuples::run();
+    println!("-----------------");
+
+    structs::stru::run();
 }
 
 fn main() {
