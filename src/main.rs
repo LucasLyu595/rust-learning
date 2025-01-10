@@ -56,6 +56,9 @@ fn struct_run() {
     println!("-----------------");
 
     structs::genfn::run();
+    println!("-----------------");
+
+    structs::enums::run();
 }
 
 fn main() {

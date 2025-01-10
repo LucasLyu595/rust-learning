@@ -1,3 +1,4 @@
+pub mod enums;
 pub mod genfn;
 pub mod life;
 pub mod moves;
