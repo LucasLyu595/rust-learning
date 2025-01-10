@@ -1,5 +1,6 @@
 pub mod args;
 pub mod arrays;
+pub mod files;
 pub mod iter;
 pub mod matching;
 pub mod math;

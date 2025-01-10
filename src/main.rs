@@ -33,4 +33,7 @@ fn main() {
     // println!("-----------------");
 
     utils::matching::run();
+    println!("-----------------");
+
+    utils::files::run();
 }
