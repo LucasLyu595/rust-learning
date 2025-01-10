@@ -50,6 +50,9 @@ fn struct_run() {
     println!("-----------------");
 
     structs::life::run();
+    println!("-----------------");
+
+    structs::traits::run();
 }
 
 fn main() {

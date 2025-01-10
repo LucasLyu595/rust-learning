@@ -1,3 +1,5 @@
+use std::fmt;
+
 // typles are convinient but not very descriptive
 // the directive make the compiler generate a `Debug` implementation
 #[derive(Debug)]
@@ -40,15 +42,22 @@ impl Person {
     }
 }
 
+impl fmt::Display for Person {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.full_name())
+        // `write!` is a very useful macro - here `f` is anything that implements `Write`
+    }
+}
+
 pub fn run() {
     // let p = Person {
     //     first_name: String::from("John"),
     //     last_name: "Doe".to_string(),
     // };
     let mut p = Person::new("John", "Doe");
-    println!("{}", p.full_name());
     p.set_first_name("Jane");
     println!("{:?}", p);
+    println!("{}", p);
     let q = p.copy();
     println!("{:?}", q.to_tuple());
 }
