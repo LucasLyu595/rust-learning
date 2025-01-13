@@ -1,4 +1,4 @@
-use std::fmt;
+use std::fmt::{self, Debug};
 
 // typles are convinient but not very descriptive
 // the directive make the compiler generate a `Debug` implementation
@@ -49,40 +49,41 @@ impl fmt::Display for Person {
     }
 }
 
-type NodeBox = Option<Box<Node>>; // no need for forward declaration
-                                  // `Box` is a smart pointer; note that no 'unboxing' was needed to call `Node` methods on it
+type NodeBox<T> = Option<Box<Node<T>>>;
+// no need for forward declaration
+// `Box` is a smart pointer; note that no 'unboxing' was needed to call `Node` methods on it
 
 #[allow(dead_code)]
 #[derive(Debug)]
-struct Node {
-    payload: String,
-    left: NodeBox,
-    right: NodeBox,
+struct Node<T> {
+    payload: T,
+    left: NodeBox<T>,
+    right: NodeBox<T>,
 }
 
-impl Node {
-    fn new(s: &str) -> Node {
+impl<T: PartialOrd + Debug> Node<T> {
+    fn new(s: T) -> Node<T> {
         Node {
-            payload: s.to_string(),
+            payload: s,
             left: None,
             right: None,
         }
     }
 
-    fn boxer(node: Node) -> NodeBox {
+    fn boxer(node: Node<T>) -> NodeBox<T> {
         Some(Box::new(node))
     }
 
-    fn set_left(&mut self, node: Node) {
+    fn set_left(&mut self, node: Node<T>) {
         self.left = Self::boxer(node);
     }
 
-    fn set_right(&mut self, node: Node) {
+    fn set_right(&mut self, node: Node<T>) {
         self.right = Self::boxer(node);
     }
 
-    fn insert(&mut self, data: &str) {
-        if data < &self.payload {
+    fn insert(&mut self, data: T) {
+        if data < self.payload {
             match self.left {
                 Some(ref mut n) => n.insert(data),
                 None => self.set_left(Self::new(data)),
@@ -99,7 +100,7 @@ impl Node {
         if let Some(ref n) = self.left {
             n.visit();
         }
-        println!("{}", self.payload);
+        println!("{:?}", self.payload);
         if let Some(ref n) = self.right {
             n.visit();
         }
@@ -118,10 +119,10 @@ pub fn run() {
     let q = p.copy();
     println!("{:?}", q.to_tuple());
 
-    let mut root = Node::new("root");
-    root.insert("one");
-    root.insert("two");
-    root.insert("four");
+    let mut root = Node::new("root".to_string());
+    root.insert("one".to_string());
+    root.insert("two".to_string());
+    root.insert("four".to_string());
     // println!("{:#?}", root); // '#' stands for 'extended'
     root.visit();
 }
