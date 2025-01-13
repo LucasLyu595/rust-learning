@@ -1,3 +1,19 @@
+struct Point {
+    x: f32,
+    y: f32,
+}
+
+fn match_tuple(t: (i32, String)) {
+    let text = match t {
+        (0, s) => format!("zero {}", s),
+        (1, ref s) if s == "hello" => "hello one".to_string(),
+        // why not just use `if s == "hello"`?
+        // match is exact business, and the compiler will complain
+        tt => format!("no match {:?}", tt),
+    };
+    println!("{}", text);
+}
+
 pub fn run() {
     let multilingual = "Hi! ¡Hola! привет!";
     // COMPARISON
@@ -39,4 +55,29 @@ pub fn run() {
         _ => "large",
     };
     println!(" and {}", text);
+
+    let t = (10, "hello".to_string());
+    match_tuple(t);
+    // let (ref n, ref s) = t;
+    // n is &i32, s is &String
+    // explicitly borrowing the value
+    // let (n, s) = t;
+    // n is i32, s is String
+
+    // destructuring works with structs too
+    let p = Point { x: 1.0, y: 2.0 };
+    #[allow(unused_variables)]
+    let Point { x, y } = p;
+    // p still lives, since x and y can and will be copied
+
+    let ot = Some((2, "hello".to_string()));
+    if let Some((_, ref s)) = ot {
+        assert_eq!(s, "hello");
+    }
+    // just borrowed the string, no 'destructuring'
+
+    // if let Ok(n) = "42".parse() {
+    if let Ok(n) = "42".parse::<i32>() {
+        println!("n is {}", n);
+    }
 }
