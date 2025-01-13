@@ -49,6 +49,63 @@ impl fmt::Display for Person {
     }
 }
 
+type NodeBox = Option<Box<Node>>; // no need for forward declaration
+                                  // `Box` is a smart pointer; note that no 'unboxing' was needed to call `Node` methods on it
+
+#[allow(dead_code)]
+#[derive(Debug)]
+struct Node {
+    payload: String,
+    left: NodeBox,
+    right: NodeBox,
+}
+
+impl Node {
+    fn new(s: &str) -> Node {
+        Node {
+            payload: s.to_string(),
+            left: None,
+            right: None,
+        }
+    }
+
+    fn boxer(node: Node) -> NodeBox {
+        Some(Box::new(node))
+    }
+
+    fn set_left(&mut self, node: Node) {
+        self.left = Self::boxer(node);
+    }
+
+    fn set_right(&mut self, node: Node) {
+        self.right = Self::boxer(node);
+    }
+
+    fn insert(&mut self, data: &str) {
+        if data < &self.payload {
+            match self.left {
+                Some(ref mut n) => n.insert(data),
+                None => self.set_left(Self::new(data)),
+            }
+        } else {
+            match self.right {
+                Some(ref mut n) => n.insert(data),
+                None => self.set_right(Self::new(data)),
+            }
+        }
+    }
+
+    fn visit(&self) {
+        if let Some(ref n) = self.left {
+            n.visit();
+        }
+        println!("{}", self.payload);
+        if let Some(ref n) = self.right {
+            n.visit();
+        }
+    }
+}
+
 pub fn run() {
     // let p = Person {
     //     first_name: String::from("John"),
@@ -60,4 +117,11 @@ pub fn run() {
     println!("{}", p);
     let q = p.copy();
     println!("{:?}", q.to_tuple());
+
+    let mut root = Node::new("root");
+    root.insert("one");
+    root.insert("two");
+    root.insert("four");
+    // println!("{:#?}", root); // '#' stands for 'extended'
+    root.visit();
 }
