@@ -59,6 +59,9 @@ fn struct_run() {
     println!("-----------------");
 
     structs::enums::run();
+    println!("-----------------");
+
+    structs::closures::run();
 }
 
 fn main() {

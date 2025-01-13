@@ -73,6 +73,12 @@ pub fn run() {
         // formatting here means one decimal after dot
     }
     println!();
-    // let v: Vec<f64> = range(0.0, 1.0, 0.1).map(|x| x.sin()).collect();
-    // println!("{:?}", v);
+
+    let v: Vec<f64> = range(0.0, 1.0, 0.1).map(|x| x.sin()).collect();
+    println!("{:?}", v);
+    // `map` is not defined on vectors, becuase then every map will create a new vector
+    let sum: f64 = range(0.0, 1.0, 0.1).map(|x| x.sin()).sum();
+    // no temporary objects are created
+    // as fast as writing it out as an explicit loop
+    println!("{:.1}", sum);
 }
