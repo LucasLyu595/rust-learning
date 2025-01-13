@@ -15,8 +15,7 @@ pub fn run() {
     println!("add {}, mul {}", add, mul);
 
     // tuples may contain different types, which is the main difference from arrays
-    #[allow(unused_variables)]
-    let tuple = ("hello", 5, 5.5, true);
+    let _ = ("hello", 5, 5.5, true);
 
     // `Iterator` methods
     // `enumerate` is like the Python generator of the same name

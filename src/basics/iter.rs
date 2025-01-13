@@ -81,4 +81,20 @@ pub fn run() {
     // no temporary objects are created
     // as fast as writing it out as an explicit loop
     println!("{:.1}", sum);
+
+    // three kinds of iterator correspond to the three basic argument types
+    let mut vector = vec!["hello".to_string(), "world".to_string()];
+    for _ in vector.iter() {} // &String
+    for _ in vector.iter_mut() {} // &mut String
+    for _ in vector.clone().into_iter() {} // String, so will move the value
+                                           //implicitly
+    for _ in &vector {}
+    for _ in &mut vector {}
+    for _ in vector.clone() {}
+    // `map` takes whatever value the iterator returns and converts it into something else
+    // `filter` takes a reference to that value
+    let _ = vector.iter().map(|x: &String| x.len());
+    let _ = vector.iter().filter(|x: &&String| x.len() > 2);
+    let _ = vector.iter().filter(|x: &&String| *x == "hello");
+    let _ = vector.iter().filter(|&x| x == "world");
 }
