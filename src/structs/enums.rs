@@ -13,8 +13,8 @@ impl Direction {
     fn as_str(&self) -> &str {
         match *self {
             // can also work without `*`
-            // TODO:check reason, possible because of
-            // Directiona and &Direction are comparable?
+            // automatic Dereferencing
+            // The Rust compiler automatically dereferences `self` when you call methods on it
             Direction::Up => "Up",
             Direction::Down => "Down",
             Direction::Left => "Left",
@@ -55,6 +55,50 @@ enum Difficulty {
     Hard,
 }
 
+// can only contain one of there values; its size is the size of the largest variant
+#[derive(Debug)]
+enum Value {
+    Number(f64),
+    Str(String),
+    Bool(bool),
+}
+
+fn eat_and_dump(v: Value) {
+    use Value::*;
+    match v {
+        Number(f) => println!("Number: {}", f),
+        Str(s) => println!("String: {}", s),
+        Bool(b) => println!("Boolean: {}", b),
+    }
+}
+
+fn dump(v: &Value) {
+    use Value::*;
+    match *v {
+        Number(f) => println!("Number: {}", f),
+        Str(ref s) => println!("String: {}", s),
+        Bool(b) => println!("Boolean: {}", b),
+    }
+}
+
+impl Value {
+    fn into_str(self) -> Option<String> {
+        match self {
+            Value::Str(s) => Some(s),
+            _ => None,
+        }
+    }
+
+    // Equivalent to the above
+    // fn to_str(self) -> Option<String> {
+    //     if let Value::Str(s) = self {
+    //         Some(s)
+    //     } else {
+    //         None
+    //     }
+    // }
+}
+
 pub fn run() {
     let start = Direction::Up;
     let mut d = start;
@@ -67,4 +111,15 @@ pub fn run() {
     let s = Speed::Slow;
     let speed = s as u32;
     println!("Speed: {}", speed);
+
+    use Value::*;
+    let n = Number(2.3);
+    let s = Str(String::from("hello"));
+    let b = Bool(true);
+
+    dump(&s);
+
+    eat_and_dump(n);
+    println!("s? {:?}", s.into_str());
+    eat_and_dump(b);
 }
