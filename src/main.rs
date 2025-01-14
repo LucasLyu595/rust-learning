@@ -67,6 +67,9 @@ fn struct_run() {
 
 fn filesys_run() {
     filesys::read::run();
+    println!("-----------------");
+
+    filesys::write::run();
 }
 
 fn main() {
