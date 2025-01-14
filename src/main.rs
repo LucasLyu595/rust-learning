@@ -1,4 +1,5 @@
 mod basics;
+mod filesys;
 mod structs;
 
 use std::f64::consts;
@@ -64,8 +65,14 @@ fn struct_run() {
     structs::closures::run();
 }
 
+fn filesys_run() {
+    filesys::read::run();
+}
+
 fn main() {
     basic_run();
     println!("-----------------");
     struct_run();
+    println!("-----------------");
+    filesys_run();
 }
