@@ -73,6 +73,9 @@ fn filesys_run() {
     println!("-----------------");
 
     filesys::path::run();
+    println!("-----------------");
+
+    filesys::process::run();
 }
 
 fn main() {
