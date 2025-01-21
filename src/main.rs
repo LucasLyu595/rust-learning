@@ -1,5 +1,6 @@
 mod basics;
 mod filesys;
+mod modules;
 mod structs;
 
 use std::f64::consts;
@@ -78,10 +79,16 @@ fn filesys_run() {
     filesys::process::run();
 }
 
+fn modules_run() {
+    modules::mods::run();
+}
+
 fn main() {
     basic_run();
     println!("-----------------");
     struct_run();
     println!("-----------------");
     filesys_run();
+    println!("-----------------");
+    modules_run();
 }
