@@ -81,6 +81,9 @@ fn filesys_run() {
 
 fn modules_run() {
     modules::mods::run();
+    println!("-----------------");
+
+    modules::crates::run();
 }
 
 fn main() {
