@@ -92,14 +92,20 @@ fn modules_run() {
     println!("-----------------");
 
     modules::cargo::run();
+    println!("-----------------");
+
+    modules::gems::run();
 }
 
 fn main() {
     basic_run();
     println!("-----------------");
+
     struct_run();
     println!("-----------------");
+
     filesys_run();
     println!("-----------------");
+
     modules_run();
 }
