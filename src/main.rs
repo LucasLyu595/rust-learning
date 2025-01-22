@@ -1,3 +1,8 @@
+#[macro_use]
+extern crate json;
+extern crate serde_derive;
+extern crate serde_json;
+
 mod basics;
 mod filesys;
 mod modules;
@@ -84,6 +89,9 @@ fn modules_run() {
     println!("-----------------");
 
     modules::crates::run();
+    println!("-----------------");
+
+    modules::cargo::run();
 }
 
 fn main() {
